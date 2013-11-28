@@ -40,6 +40,7 @@ class Query(models.Model):
 		(SAT, 'Saturday'),
 	)
 
+	# loads choices from defined constant, but won't allow saving
 	eligible_days = models.CharField(max_length=14,choices=DAYS_OF_WEEK_CHOICES,
 		blank=False, default='Saturday')
 	campground_id = models.SmallIntegerField()
