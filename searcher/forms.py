@@ -9,3 +9,6 @@ class QueryAdminForm(forms.ModelForm):
 			'eligible_days': forms.widgets.CheckboxSelectMultiple
 		}
 
+	def clean_eligible_days(self):
+		pass
+
