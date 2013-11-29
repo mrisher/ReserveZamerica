@@ -1,13 +1,11 @@
 <h1>{{ campgroundquery }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
+<p>Searching <i>{{ campgroundquery.campground }}</i> 
+from <i>{{campgroundquery.start_date}}</i> to <i>{{campgroundquery.end_date}}</i>
+for <i>{{ campgroundquery.eligible_days.all|join:"/" }}</i> availability
+for <i>{{ campgroundquery.stay_length }}</i> nights.
 <form action="{% url 'searcher:execute' campgroundquery.id %}" method="get">
 {% csrf_token %}
-<ul>
-{% for day in campgroundquery.eligible_days.all %}
-	<li>{{ day.name }}</li>
-{% endfor %}
-</ul>
 <input type="submit" value="Execute" />
 </form>
