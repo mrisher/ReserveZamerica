@@ -1,0 +1,11 @@
+Hello
+{% if latest_campgroundquery_list %}
+	<ul>
+	{% for query in latest_campgroundquery_list %}
+		<li><a href="{% url 'searcher:detail' query.id %}">{{ query.campground }}</a></li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>None available</p>
+{% endif %}
+Goodbye
