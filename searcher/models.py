@@ -2,9 +2,9 @@ from django.db import models
 from django.core.exceptions import ValidationError
 
 class DayOfWeek(models.Model):
-	day_name = models.CharField(max_length=10)
+	name = models.CharField(max_length=10)
 	def __unicode__(self):
-		return self.day_name
+		return self.name
 
 class Campground(models.Model):
 	campground_name = models.CharField(max_length=100)
