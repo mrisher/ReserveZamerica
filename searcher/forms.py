@@ -1,14 +1,11 @@
 from django import forms
 from django.contrib import admin
-from searcher.models import Query
+from searcher.models import CampgroundQuery
 
-class QueryAdminForm(forms.ModelForm):
+class CampgroundQueryAdminForm(forms.ModelForm):
 	class Meta:
-		model = Query
+		model = CampgroundQuery
 		widgets = {
 			'eligible_days': forms.widgets.CheckboxSelectMultiple
 		}
-
-	def clean_eligible_days(self):
-		pass
 

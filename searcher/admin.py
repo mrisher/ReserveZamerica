@@ -1,9 +1,14 @@
 from django.contrib import admin
-from searcher.models import Query
-from forms import QueryAdminForm
+from searcher.models import CampgroundQuery
+from searcher.models import Campground
+from searcher.models import DayOfWeek
+from forms import CampgroundQueryAdminForm
 
-class QueryAdmin(admin.ModelAdmin):
-	#list_display = ('campground_id', 'stay_length', 'days', 'start_date', 'end_date')
-	form = QueryAdminForm
+class CampgroundQueryAdmin(admin.ModelAdmin):
+	form = CampgroundQueryAdminForm
 
-admin.site.register(Query, QueryAdmin)
+admin.site.register(Campground)
+
+admin.site.register(CampgroundQuery, CampgroundQueryAdmin)
+
+admin.site.register(DayOfWeek)

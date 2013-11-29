@@ -1,33 +1,30 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 
-class Query(models.Model):
-	SUN = 0
-	MON = 1
-	TUE = 2
-	WED = 3
-	THU = 4
-	FRI = 5
-	SAT = 6
+class DayOfWeek(models.Model):
+	day_name = models.CharField(max_length=10)
+	def __unicode__(self):
+		return self.day_name
 
-	DAYS_OF_WEEK_CHOICES = (
-		(SUN, 'Sunday'),
-		(MON, 'Monday'),
-		(TUE, 'Tuesday'),
-		(WED, 'Wednesday'),
-		(THU, 'Thursday'),
-		(FRI, 'Friday'),
-		(SAT, 'Saturday'),
-	)
+class Campground(models.Model):
+	campground_name = models.CharField(max_length=100)
+	park_id = models.SmallIntegerField()
+	def __unicode__(self):
+		return self.campground_name
 
+class CampgroundQuery(models.Model):
+	# loads choices from defined list
+	eligible_days = models.ManyToManyField('DayOfWeek')
+	campground = models.ForeignKey('Campground')
+	stay_length = models.SmallIntegerField()
 	start_date = models.DateField()
 	end_date = models.DateField()
+	last_query = models.DateTimeField(auto_now=True)
+	active = models.BooleanField(default=True)
 
-	# loads choices from defined constant, but won't allow saving
-	eligible_days = models.CharField(max_length=14,choices=DAYS_OF_WEEK_CHOICES,
-		blank=False, default='Saturday')
-	campground_id = models.SmallIntegerField()
-	stay_length = models.SmallIntegerField()
+	def __unicode__(self):
+		return (self.campground.campground_name + '-' + 
+			self.end_date.strftime('%x'))
 
 
 class Result(models.Model):

@@ -1,6 +1,3 @@
 ToDo:
 
-* Figure out how to validate the multi-select
-	* could make it a ManyToMany but that seems crass
-	* override Validate() method?
-	* subclass CommaSeparatedIntegerField to change validate
+* Sample query: http://api.amp.active.com/camping/campsites?contractCode=CA&parkId=120063&arvdate=01%2F14%2F2014&lengthOfStay=1&siteType=10001&api_key=3vtcjh2jfsnh78z7bjbfkdmj
