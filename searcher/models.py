@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 
 class DayOfWeek(models.Model):
 	name = models.CharField(max_length=10)
+	date_code = models.SmallIntegerField()
 	def __unicode__(self):
 		return self.name
 
