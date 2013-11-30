@@ -1,6 +1,4 @@
 ToDo:
-* [ ] Switch to using template for Execute view
-* [ ] Learn about generic views
-* [ ] Filter results to only Yesses
+* [X] Filter results to only Yesses
 * [ ] Construct deep-link URL from Yesses
-
+* [ ] Hide tables if there are no Yess results
