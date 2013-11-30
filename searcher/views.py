@@ -54,9 +54,11 @@ def execute(request, campgroundquery_id):
 					break
 				else:
 					time.sleep(1)	# delay to avoid hitting rate limit 
+			result = parse_xml(req.text)
 			query_list.append({
 				'query_url': req.url,
-				'query_results': parse_xml(req.text),
+				'query_results': result['result_list'],
+				'available_count': result['available_count'],
 				'query_date': query_date,
 			})		
 		query_date += date_delta
@@ -71,10 +73,13 @@ def execute(request, campgroundquery_id):
 def parse_xml(xml_response):
 	resultset = ET.fromstring(xml_response)
 	result_list = []
+	count = 0
 	for result in resultset.findall('result'):
 		result_list.append({
 			'site': result.get('Site'),
 			'site_id': result.get('SiteId'),
 			'availability_status': result.get('availabilityStatus')})
-	return result_list
+		if result.get('availabilityStatus') == 'Y':
+			count+=1
+	return {'available_count': count, 'result_list':result_list}
 
