@@ -1,0 +1,37 @@
+<style>
+table {
+	border-collapse: collapse;
+}
+table, th, td {
+	border: 1px solid black
+}
+th, td {
+	padding: .3em;
+}
+.available {
+	background-color: #cfc;
+}
+.unavail {
+	display: none;
+}
+</style>
+
+<h1>{{ query_desc }}</h1>
+
+{% for query in query_set %}
+	<h2><a href="{{ query.query_url }}">{{ query.query_date|date:"N j, Y (D)" }}</a></h2>
+	{% if query.available_count > 0 %}
+	<table>
+	<tr><td>site</td><td>site_id</td><td>status</td></tr>
+	{% for result in query.query_results %}
+	<tr class="{% if result.availability_status == 'Y' %}available{% else %}unavail{% endif %}">
+		<td>{{ result.site }}</td>
+		<td>{{ result.site_id }}</td>
+		<td>{{ result.availability_status }}</td>
+	</tr>
+	{% endfor %}
+	</table>
+	{% else %}
+	<p>No availability</p>
+	{% endif %}
+{% endfor %}
