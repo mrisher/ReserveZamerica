@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 	'south',
     'searcher',
+	'gunicorn',
 )
 
 MIDDLEWARE_CLASSES = (
