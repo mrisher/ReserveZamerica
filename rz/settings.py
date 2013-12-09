@@ -21,7 +21,7 @@ SECRET_KEY = 'bg(9c3t1p+#ix8k^+xn^$s1&n&bvy3w!_96##bcnol0yj6fgi2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 import socket
-if socket.gethostname() == 'ubuntu':
+if socket.gethostname() == 'mrisher-vm':
 	DEBUG = TEMPLATE_DEBUG = True
 else:
 	DEBUG = TEMPLATE_DEBUG = False
@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 	'south',
     'searcher',
-	'gunicorn',
 )
 
 MIDDLEWARE_CLASSES = (
